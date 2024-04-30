@@ -3,13 +3,10 @@ import SingleBook from "./SingleBook";
 import CommentArea from "./CommentArea";
 import { useState } from "react";
 
-const BookList = ({ books }) => {
-  // const books = props.books;
-  const [selectedBook, setSelectedBook] = useState(null);
-
-  const changeSelectedBook = (asin) => {
-    setSelectedBook(asin);
-  };
+const BookList = (props) => {
+  const books = props.books;
+  const [asin, setAsin] = useState(undefined);
+  console.log(books);
   return (
     <Container>
       <Row className="row-cols-2">
@@ -17,17 +14,13 @@ const BookList = ({ books }) => {
           {books.map((obj) => {
             return (
               <Col lg={2} className="gy-2 d-flex">
-                <SingleBook
-                  book={obj}
-                  selectedBook={selectedBook}
-                  changeSelectedBook={changeSelectedBook}
-                />
+                <SingleBook img={obj.img} title={obj.title} asin={obj.asin} />
               </Col>
             );
           })}
         </Col>
         <Col className="col-4">
-          <CommentArea asin={selectedBook} />
+          <CommentArea asin={books} />
         </Col>
       </Row>
     </Container>

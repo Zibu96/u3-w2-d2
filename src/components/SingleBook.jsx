@@ -10,16 +10,16 @@ const SingleBook = (props) => {
   const [selected, setSelected] = useState(false);
   return (
     <Card
-      onClick={() => props.changeSelectedBook(props.book.asin)}
       className="h-100"
-      style={{
-        border:
-          props.selectedBook === props.book.asin ? "3px solid red" : "none",
-      }}
+      style={{ border: selected ? "3px solid red" : "none" }}
     >
-      <Card.Img variant="top" src={props.book.img} />
+      <Card.Img
+        variant="top"
+        src={props.img}
+        onClick={() => setSelected(!selected)}
+      />
       <Card.Body>
-        <Card.Title>{props.book.title}</Card.Title>
+        <Card.Title>{props.title}</Card.Title>
       </Card.Body>
       {/* <Card.Body>{selected && <CommentArea asin={props.asin} />}</Card.Body> */}
     </Card>
